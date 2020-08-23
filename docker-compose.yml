@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+    app:
+        build:
+            context: .
+        volumes:
+            - static:/vol/web
+    proxy:
+        build:
+            context: ./proxy
+        volumes:
+            - ../static:/vol/static
+        ports:
+            - "8080:8080"
+        depends_on:
+            - app
+
+volumes:
+    static:
