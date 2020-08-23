@@ -1,0 +1,8 @@
+[run]
+source = .
+omit = */node_modules/*, */apps.py, freelancer/*, */models.py, */views.py, manage.py
+
+[report]
+fail_under = 100
+show_missing = True
+skip_covered = False

@@ -430,3 +430,92 @@ class TestCPF_CNPJ(APITestCase):
             response.status_code,
             status.HTTP_422_UNPROCESSABLE_ENTITY
         )
+
+    def test_experience_invalid_date(self):
+        '''
+            Test:
+                - Test validation for an invalid date
+            Expected Result:
+                - The endpoint must return 422 status code.
+        '''
+        data = {
+            'freelance': {
+                'id': 42,
+                'user': {
+                    'firstName': 'Hunter',
+                    'lastName': 'Moore',
+                    'jobTitle': 'Fullstack JS Developer'
+                },
+                'status': 'new',
+                'retribution': 650,
+                'availabilityDate': '2018-06-13T00:00:00+01:00',
+                'professionalExperiences': [
+                    {
+                        'id': 4,
+                        'companyName': 'Okuneva, Kerluke and Strosin',
+                        'startDate': '2016-13-05T00:00:00+01:00',
+                        'endDate': '2018-05-01T00:00:00+01:00',
+                        'skills': [
+                            {
+                                'id': 241,
+                                'name': 'React'
+                            },
+                            {
+                                'id': 270,
+                                'name': 'Node.js'
+                            },
+                            {
+                                'id': 370,
+                                'name': 'Javascript'
+                            }
+                        ]
+                    },
+                    {
+                        'id': 54,
+                        'companyName': 'Hayes - Veum',
+                        'startDate': '2016-01-01T00:00:00+01:00',
+                        'endDate': '2016-09-01T00:00:00+01:00',
+                        'skills': [
+                            {
+                                'id': 470,
+                                'name': 'MySQL'
+                            },
+                            {
+                                'id': 400,
+                                'name': 'Java'
+                            },
+                            {
+                                'id': 370,
+                                'name': 'Javascript'
+                            }
+                        ]
+                    },
+                    {
+                        'id': 80,
+                        'companyName': 'Harber, Kirlin and Thompson',
+                        'startDate': '2013-05-01T00:00:00+01:00',
+                        'endDate': '2014-07-01T00:00:00+01:00',
+                        'skills': [
+                            {
+                                'id': 370,
+                                'name': 'Javascript'
+                            },
+                            {
+                                'id': 400,
+                                'name': 'Java'
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+        response = self.client.post(
+            '/frelancer/experience/',
+            data,
+            format='json'
+        )
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_422_UNPROCESSABLE_ENTITY
+        )

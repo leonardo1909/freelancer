@@ -80,11 +80,30 @@ O resultado deverá ser formatado em JSON com a exata mesma estrutura do exemplo
 2. Faça o exercício
 3. Abra uma pull request para esse repositório ou nos envie um arquivo com o seu código.
 
-# Production
-Para rodar a aplicação em um container semelhante a produção:
+# Container
+Para executar a aplicação em um container semelhante ao ambiente de produção:
 ```
 # make run
 ```
 A aplicação irá rodar em um servidor nginx local na porta 8080.
 
-**É necessário ter docker e docker-compose instalado na máquina.
+*** É necessário ter docker e docker-compose instalado na máquina.**
+
+**** Por simplicidade, foi deixado em "hardcode" algumas flags e variáveis do sistema como: DEBUG, PRIVATE_KEY. Para um ambiente identico a produção, esses valores devem ser passados através de variáveis de ambiente.**
+
+# Testes
+Para executar os testes da aplicação:
+```
+# python manage.py test
+```
+
+Caso queira um relátório quanto a cobertura dos testes instale o coverage no seu ambiente:
+```
+# pip install coverage
+```
+
+Com o pacote instalado basta executar:
+```
+# make coverage
+```
+**Os paramêtros para a cobertura de teste são observados em .coveragerc.
